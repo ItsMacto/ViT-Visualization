@@ -36,6 +36,10 @@ def build_ui():
     with gr.Blocks(title=TITLE, theme=gr.themes.Soft()) as demo:
         gr.Markdown(f"## {TITLE}")
         gr.Markdown(DESCRIPTION)
+        gr.Markdown("""
+### Understanding Attention Rollout
+The **Rollout** visualization aggregates attention across all 12 layers to show global attention flow. For each layer, we average attention across all heads, add residual connections to account for skip connections, and multiply with the accumulated flow from previous layers. We also prune the bottom 90% of attention values to reduce noise and highlight dominant patterns. The result is a global map showing which input patches most influence the model's final classification.
+        """)
 
         # Store analysis results to avoid re-computing on every interaction
         analysis_state = gr.State(value=None)
